@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--定义文件与Mapper接口的对应关系-->
+<mapper namespace="com.cityu.sdsc5003classproject.dao.ContactDao">
+    <!--配置表结构和实体类的对应关系-->
+    <resultMap type="com.cityu.sdsc5003classproject.entity.Contact" id="ContactResult">
+        <result property="id" column="id"/>
+        <result property="user_id" column="user_id"/>
+        <result property="name" column="name"/>
+        <result property="telephone" column="telephone"/>
+        <result property="identity_card" column="identity_card"/>
+    </resultMap>
+    <!--针对接口方法编写具体的SQL语句-->
+    <select id="searchByUserId" resultMap="ContactResult">
+        select * from contact where user_id=#{user_id}
+    </select>
+
+<!--    <select id="getPeopleById" resultMap="PeopleResult">-->
+<!--        select * from People where id=#{id}-->
+<!--    </select>-->
+
+
+    <insert id="insertContact" parameterType="com.cityu.sdsc5003classproject.entity.Contact">
+        insert into contact(user_id, name,telephone,identity_card)
+        values(#{user_id},#{name},#{telephone},#{identity_card})
+    </insert>
+
+<!--    <update id="updatePeople" parameterType="com.cityu.sdsc5003classproject.entity.People">-->
+<!--        update People-->
+<!--        set-->
+<!--            name=#{name}-->
+<!--        where id=#{id}-->
+<!--    </update>-->
+
+    <delete id="deleteById">
+        delete from contact where id=#{id}
+    </delete>
+
+</mapper>
+

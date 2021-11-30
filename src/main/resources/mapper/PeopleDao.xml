@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--定义文件与Mapper接口的对应关系-->
+<mapper namespace="com.cityu.sdsc5003classproject.dao.PeopleDao">
+    <!--配置表结构和实体类的对应关系-->
+    <resultMap type="com.cityu.sdsc5003classproject.entity.People" id="PeopleResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <!--针对接口方法编写具体的SQL语句-->
+    <select id="getAllPeople" resultMap="PeopleResult">
+        select id,name from People
+        order by id desc
+    </select>
+
+    <select id="getPeopleById" resultMap="PeopleResult">
+        select * from People where id=#{id}
+    </select>
+
+
+        <insert id="insertPeople" parameterType="com.cityu.sdsc5003classproject.entity.People">
+            insert into People(id, name)
+            values(#{id},#{name})
+        </insert>
+
+        <update id="updatePeople" parameterType="com.cityu.sdsc5003classproject.entity.People">
+            update People
+            set
+                name=#{name}
+            where id=#{id}
+        </update>
+
+        <delete id="deleteById" parameterType="String">
+            delete from People where id=#{id}
+        </delete>
+
+</mapper>
+
