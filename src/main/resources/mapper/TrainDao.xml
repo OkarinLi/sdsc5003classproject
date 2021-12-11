@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--定义文件与Mapper接口的对应关系-->
+<mapper namespace="com.cityu.sdsc5003classproject.dao.TrainDao">
+    <!--配置表结构和实体类的对应关系-->
+    <resultMap type="com.cityu.sdsc5003classproject.entity.Train" id="TrainResult">
+        <result property="id" column="id"/>
+        <result property="seat_amount" column="seat_amount"/>
+        <result property="sequence" column="sequence"/>
+    </resultMap>
+    <!--针对接口方法编写具体的SQL语句-->
+    <select id="searchTrainByDA" resultMap="TrainResult">
+        SELECT *
+        FROM train_num
+        WHERE
+                train_num.id IN
+                (SELECT DISTINCT train_num.id
+                 FROM train_num
+                 WHERE train_num.id IN (
+                     select G1.train_id
+                     from go_through as G1, station as S1
+                     where G1.station_id=S1.id and S1.station_name=#{departureStation}
+                 ) AND train_num.id IN (
+                     select G2.train_id
+                     from go_through as G2, station as S2
+                     where G2.station_id=S2.id and S2.station_name=#{arrivalStation}
+                 ))
+        order by id desc
+    </select>
+
+    <!--    <select id="getPeopleById" resultMap="PeopleResult">-->
+    <!--        select * from People where id=#{id}-->
+    <!--    </select>-->
+
+
+    <!--    <insert id="insertPeople" parameterType="com.cityu.sdsc5003classproject.entity.People">-->
+    <!--        insert into People(id, name)-->
+    <!--        values(#{id},#{name})-->
+    <!--    </insert>-->
+
+    <!--    <update id="updatePeople" parameterType="com.cityu.sdsc5003classproject.entity.People">-->
+    <!--        update People-->
+    <!--        set-->
+    <!--            name=#{name}-->
+    <!--        where id=#{id}-->
+    <!--    </update>-->
+
+    <!--    <delete id="deleteById" parameterType="String">-->
+    <!--        delete from People where id=#{id}-->
+    <!--    </delete>-->
+
+</mapper>
+
