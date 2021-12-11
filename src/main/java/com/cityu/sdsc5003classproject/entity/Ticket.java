@@ -9,4 +9,5 @@ public class Ticket {
     private String seat;
     private String identity_card;
     private String ticket_time;
+    private String user_id;
 }
