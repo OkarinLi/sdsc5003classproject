@@ -22,7 +22,6 @@ public class UserController {
     @Resource
     ContactDao contactDao;
 
-
     //根据用户id查询信息
     @GetMapping("/user")
     public Result<User> queryByName(int user_id){
