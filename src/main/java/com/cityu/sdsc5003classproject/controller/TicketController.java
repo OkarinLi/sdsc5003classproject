@@ -1,6 +1,7 @@
 package com.cityu.sdsc5003classproject.controller;
 
 import com.cityu.sdsc5003classproject.dao.StationDao;
+import com.cityu.sdsc5003classproject.dao.TicketDao;
 import com.cityu.sdsc5003classproject.dao.TrainDao;
 import com.cityu.sdsc5003classproject.entity.Station;
 import com.cityu.sdsc5003classproject.entity.Train;
@@ -20,6 +21,9 @@ public class TicketController {
     StationDao stationDao;
     @Resource
     TrainDao trainDao;
+    @Resource
+    TicketDao ticketDao;
+
     //查找所有车站
     @GetMapping("/station")
     @ResponseBody
@@ -34,4 +38,5 @@ public class TicketController {
                                               @RequestParam(value="arrivalStation", required=true) String arrivalStation){
         return (ResultGenerator.genSuccessResult(trainDao.searchTrainByDA(departureStation,arrivalStation)));
     }
+
 }
