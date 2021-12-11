@@ -3,7 +3,7 @@ create table users(
     id int primary key auto_increment,
     user_name varchar(50) not null unique,
     password varchar(50) not null,
-    telphone varchar(13),
+    telephone varchar(13),
     email varchar(50),
     identity_card char(35)
 );
@@ -14,7 +14,7 @@ create table contact(
     id int primary key auto_increment,
     user_id int not null,
     name varchar(124) not null,
-    telphone varchar(124),
+    telephone varchar(124),
     identity_card char(35) not null,
     CONSTRAINT contact_user_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -30,7 +30,7 @@ create table station(
 DROP TABLE IF EXISTS train_num;
 create table train_num(
     id int primary key auto_increment,
-    seat_number int,
+    seat_amount int,
     sequence varchar(50)
 );
 
