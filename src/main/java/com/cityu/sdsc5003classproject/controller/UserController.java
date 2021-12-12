@@ -25,7 +25,6 @@ public class UserController {
     //根据用户id查询信息
     @GetMapping("/user")
     public Result<User> queryByName(int user_id){
-       System.out.println(user_id);
         User userInfo = userDao.getUserById(user_id);
         List<Contact> conInfo = contactDao.searchByUserId(user_id);
         userInfo.setContact(conInfo);

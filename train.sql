@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS train;
+use train;
 DROP TABLE IF EXISTS users;
 create table users(
     id int primary key auto_increment,
@@ -16,7 +18,7 @@ create table contact(
     name varchar(124) not null,
     telephone varchar(124),
     identity_card char(35) not null,
-    CONSTRAINT contact_user_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- -- 车站
@@ -30,7 +32,6 @@ create table station(
 DROP TABLE IF EXISTS train_num;
 create table train_num(
     id int primary key auto_increment,
-    seat_amount int,
     sequence varchar(50)
 );
 
@@ -42,8 +43,8 @@ create table go_through(
     primary key(train_id,station_id),
     arrive_time datetime,
     leave_time datetime,
-    CONSTRAINT train_go_through_id FOREIGN KEY (train_id) REFERENCES train_num(id) ON DELETE CASCADE,
-    CONSTRAINT station_go_through_id FOREIGN KEY (station_id) REFERENCES station(id) ON DELETE CASCADE
+    FOREIGN KEY (train_id) REFERENCES train_num(id) ON DELETE CASCADE,
+    FOREIGN KEY (station_id) REFERENCES station(id) ON DELETE CASCADE
 );
 
 -- 车票
@@ -51,24 +52,39 @@ DROP TABLE IF EXISTS ticket;
 create table ticket(
 	id int primary key auto_increment,
 	train_id int,
-	CONSTRAINT train_num_ticket_id FOREIGN KEY (train_id) REFERENCES train_num(id) ON DELETE CASCADE,
+	FOREIGN KEY (train_id) REFERENCES train_num(id) ON DELETE CASCADE,
 	seat varchar(50),
-	trival_time datetime,
+	travel_time datetime,
 	ticket_type varchar(50),
 	price decimal,
 	name varchar(50),
-	identity_card char(35)
+	identity_card char(35),
+    user_id int,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- 日期座位数
+DROP TABLE IF EXISTS date_seat;
+create TABLE  date_seat(
+    id int primary key auto_increment,
+    train_id int,
+    train_date date,
+    seat_amount int,
+    FOREIGN KEY (train_id) REFERENCES train_num(id) ON DELETE CASCADE
+)
+
+
 -- 购票
-DROP TABLE IF EXISTS ticket_order;
-create table ticket_order(
-	ticket_id int,
-	primary key(ticket_id),
-	user_id int,
-	CONSTRAINT ticket_order_id FOREIGN KEY (ticket_id) REFERENCES ticket(id) ON DELETE CASCADE,
-	CONSTRAINT user_order_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
+-- DROP TABLE IF EXISTS ticket_order;
+-- create table ticket_order(
+-- 	ticket_id int,
+-- 	primary key(ticket_id),
+-- 	user_id int,
+-- 	FOREIGN KEY (ticket_id) REFERENCES ticket(id) ON DELETE CASCADE,
+-- 	FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+-- );
+
+
 
 
 

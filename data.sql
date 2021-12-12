@@ -4,10 +4,24 @@ INSERT into station(station_name) values('HeNan');
 INSERT into station(station_name) values('HaErBin');
 
 
-INSERT into train_num(seat_amount,sequence) values('117','G101');
-INSERT into train_num(seat_amount,sequence) values('244','G1011');
-INSERT into train_num(seat_amount,sequence) values('146','G104');
-INSERT into train_num(seat_amount,sequence) values('754','G1052');
+INSERT into train_num(sequence) values('G101');
+INSERT into train_num(sequence) values('G1011');
+INSERT into train_num(sequence) values('G104');
+INSERT into train_num(sequence) values('G1052');
+
+INSERT into date_seat(train_id,train_date,seat_amount) values(1,'2021-12-11',111);
+INSERT into date_seat(train_id,train_date,seat_amount) values(1,'2021-12-12',112);
+INSERT into date_seat(train_id,train_date,seat_amount) values(1,'2021-12-13',113);
+INSERT into date_seat(train_id,train_date,seat_amount) values(2,'2021-12-11',221);
+INSERT into date_seat(train_id,train_date,seat_amount) values(2,'2021-12-12',222);
+INSERT into date_seat(train_id,train_date,seat_amount) values(2,'2021-12-13',223);
+INSERT into date_seat(train_id,train_date,seat_amount) values(3,'2021-12-11',331);
+INSERT into date_seat(train_id,train_date,seat_amount) values(3,'2021-12-12',332);
+INSERT into date_seat(train_id,train_date,seat_amount) values(3,'2021-12-13',333);
+INSERT into date_seat(train_id,train_date,seat_amount) values(4,'2021-12-11',441);
+INSERT into date_seat(train_id,train_date,seat_amount) values(4,'2021-12-12',442);
+INSERT into date_seat(train_id,train_date,seat_amount) values(4,'2021-12-13',443);
+
 
 
 INSERT into go_through(train_id,station_id,arrive_time,leave_time) values('1','1','2021-12-11 12:32:00','2021-12-11 12:40:00');
