@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--定义文件与Mapper接口的对应关系-->
+<mapper namespace="com.cityu.sdsc5003classproject.dao.TicketDao">
+    <!--针对接口方法编写具体的SQL语句-->
+
+        <select id="searchByUserId" resultType="com.cityu.sdsc5003classproject.entity.Ticket">
+            select * from train_num,ticket
+            where user_id=#{user_id}
+              and ticket.train_id = train_num.id
+        </select>
+
+
+        <insert id="insertTicket" parameterType="com.cityu.sdsc5003classproject.entity.Ticket">
+            insert into ticket(train_id, seat,travel_time,ticket_type,price,name,identity_card,user_id)
+            values(#{train_id},#{seat},#{travel_time},#{ticket_type},#{price},#{name},#{identity_card},#{user_id})
+        </insert>
+
+        <update id="minusOneTicket" parameterType="com.cityu.sdsc5003classproject.entity.Ticket">
+            update date_seat
+            set
+                seat_amount=seat_amount-1
+            where train_date=#{travel_time}
+            and train_id=#{train_id}
+        </update>
+
+    <!--    <delete id="deleteById" parameterType="String">-->
+    <!--        delete from People where id=#{id}-->
+    <!--    </delete>-->
+
+</mapper>
+
