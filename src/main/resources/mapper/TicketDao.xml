@@ -23,7 +23,17 @@
             where train_date=#{travel_time}
             and train_id=#{train_id}
         </update>
-
+        <update id="addOneSeat" parameterType="com.cityu.sdsc5003classproject.entity.Ticket">
+            update date_seat
+            set
+                seat_amount=seat_amount+1
+            where train_date=#{travel_time}
+              and train_id=#{train_id}
+        </update>
+        <delete id="deleteById" parameterType="com.cityu.sdsc5003classproject.entity.Ticket">
+            delete from ticket
+            where ticket.id=#{id}
+        </delete>
     <!--    <delete id="deleteById" parameterType="String">-->
     <!--        delete from People where id=#{id}-->
     <!--    </delete>-->

@@ -71,8 +71,16 @@ create TABLE  date_seat(
     train_date date,
     seat_amount int,
     FOREIGN KEY (train_id) REFERENCES train_num(id) ON DELETE CASCADE
-)
+);
+INSERT INTO `train`.`users` ( `user_name`, `password`, `telephone`, `email`, `identity_card`) VALUES ('CCC', '1111', '2222', '3333', '4444');
 
+INSERT INTO `train`.`train_num` ( `seat_amount`, `sequence`) VALUES ('1', '80', 'GB11');
+INSERT INTO `train`.`train_num` ( `seat_amount`, `sequence`) VALUES ('2', '80', 'GB12');
+
+INSERT INTO `train`.`station` (`station_name`) VALUES ('Hong Kong');
+INSERT INTO `train`.`station` (`station_name`) VALUES ('ZhengZhou');
+INSERT INTO `train`.`station` (`station_name`) VALUES ('CangZhou');
+INSERT INTO `train`.`station` (`station_name`) VALUES ('Bei Jing');
 
 -- 购票
 -- DROP TABLE IF EXISTS ticket_order;
