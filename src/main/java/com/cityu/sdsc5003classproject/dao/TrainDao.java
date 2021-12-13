@@ -7,9 +7,5 @@ import java.util.List;
 
 public interface TrainDao {
     //根据出发站和到达站查询车次信息
-    List<Train> searchTrainByDA(@Param("departureStation")String departureStation,@Param("arrivalStation")String arrivalStation);
-    List<Train> searchTrainByTime(@Param("departureStation")String departureStation,@Param("arrivalStation")String arrivalStation,@Param("startDate")String startDate,@Param("endDate")String endDate);
-    List<Train> groupByTrainType(@Param("departureStation")String departureStation,@Param("arrivalStation")String arrivalStation,@Param("startDate")String startDate,@Param("endDate")String endDate);
-    List<Train> gruopByTickeyType(@Param("departureStation")String departureStation,@Param("arrivalStation")String arrivalStation,@Param("startDate")String startDate,@Param("endDate")String endDate);
-
+    List<Train> searchTrainByDA(@Param("departureStation")String departureStation,@Param("arrivalStation")String arrivalStation,@Param("train_date")String train_date);
 }

@@ -10,8 +10,8 @@
     </resultMap>
     <!--针对接口方法编写具体的SQL语句-->
     <select id="searchTrainByDA" resultMap="TrainResult">
-        SELECT *
-        FROM train_num
+        SELECT train_num.id,train_num.sequence,date_seat.seat_amount
+        FROM train_num,date_seat
         WHERE
                 train_num.id IN
                 (SELECT DISTINCT train_num.id
@@ -25,6 +25,9 @@
                      from go_through as G2, station as S2
                      where G2.station_id=S2.id and S2.station_name=#{arrivalStation}
                  ))
+          AND
+            train_num.id = date_seat.train_id
+          And date_seat.train_date =#{train_date}
         order by id desc
     </select>
 

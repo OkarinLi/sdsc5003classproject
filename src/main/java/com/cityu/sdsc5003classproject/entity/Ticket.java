@@ -1,13 +1,17 @@
 package com.cityu.sdsc5003classproject.entity;
 
+import lombok.Data;
+
+@Data
 public class Ticket {
-    private String ticket_id;
-    private String train_id;
-    private String name;
-    private int price;
-    private String ticket_type;
+    private int id;
+    private int train_id;
     private String seat;
+    private String travel_time;
+    private String ticket_type;
+    private float price;
+    private String name;
     private String identity_card;
-    private String ticket_time;
-    private String user_id;
+    private int user_id;
+    private String sequence;
 }

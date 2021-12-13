@@ -1,17 +1,12 @@
 package com.cityu.sdsc5003classproject.dao;
 
-import com.cityu.sdsc5003classproject.entity.Contact;
+
 import com.cityu.sdsc5003classproject.entity.Ticket;
 
 import java.util.List;
 
 public interface TicketDao {
-//    List<Contact> searchByUserId(int user_id);
-//    int deleteById(int id);
-//    int insertTicket(Contact contact);
-    // 插入购票信息
-    int insertTicket(Ticket Ticket);
-    //
-
-
+    int insertTicket(Ticket ticket);
+    int minusOneTicket(Ticket ticket);
+    List<Ticket> searchByUserId(int user_id);
 }
