@@ -9,6 +9,9 @@ public interface TicketDao {
 //    List<Contact> searchByUserId(int user_id);
 //    int deleteById(int id);
 //    int insertTicket(Contact contact);
+    // 插入购票信息
     int insertTicket(Ticket Ticket);
+    //
+
 
 }
