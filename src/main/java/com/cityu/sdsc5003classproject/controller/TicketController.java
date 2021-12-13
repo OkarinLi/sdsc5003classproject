@@ -56,4 +56,13 @@ public class TicketController {
     public Result<List<Ticket>> getTicketById(@RequestParam(value="user_id", required=true)int user_id){
         return(ResultGenerator.genSuccessResult(ticketDao.searchByUserId(user_id)));
     }
+
+    //退票
+    @DeleteMapping("/ticket")
+    @ResponseBody
+    public Result<Boolean> delete(@RequestBody Ticket ticket){
+        ticketDao.deleteById(ticket);
+        ticketDao.addOneSeat(ticket);
+        return ResultGenerator.genSuccessResult(true);
+    }
 }

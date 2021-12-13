@@ -5,7 +5,7 @@
     <!--针对接口方法编写具体的SQL语句-->
 
         <select id="searchByUserId" resultType="com.cityu.sdsc5003classproject.entity.Ticket">
-            select * from train_num,ticket
+            select train_num.sequence,ticket.id,ticket.travel_time,ticket.name,ticket.identity_card,ticket.user_id,ticket.train_id from train_num,ticket
             where user_id=#{user_id}
               and ticket.train_id = train_num.id
         </select>
@@ -24,9 +24,17 @@
             and train_id=#{train_id}
         </update>
 
-    <!--    <delete id="deleteById" parameterType="String">-->
-    <!--        delete from People where id=#{id}-->
-    <!--    </delete>-->
+    <update id="addOneSeat" parameterType="com.cityu.sdsc5003classproject.entity.Ticket">
+        update date_seat
+        set
+            seat_amount=seat_amount+1
+        where train_date=#{travel_time}
+          and train_id=#{train_id}
+    </update>
+
+        <delete id="deleteById">
+            delete from ticket where id=#{id}
+        </delete>
 
 </mapper>
 
